@@ -14,7 +14,7 @@ function addQuestion() {
 
     // Send the AJAX request
     $.ajax({
-      url: "add_question.php", // Replace with the actual URL to your server-side script
+      url: "backend/add_question.php", // Replace with the actual URL to your server-side script
       type: "POST",
       data: formData,
       success: function (response) {

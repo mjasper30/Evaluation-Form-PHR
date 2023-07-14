@@ -1,5 +1,5 @@
 <?php
-include('dbconn.php');
+include('../includes/dbconn.php');
 
 // Get the values from the form
 $question = mysqli_real_escape_string($conn, $_POST['yourQuestion']);
