@@ -22,6 +22,12 @@ function addQuestion() {
         console.log("Data added successfully");
         console.log(response);
         $("#addQuestionModal").modal("hide");
+        $("#yourQuestion").val('');
+        $("#choiceOne").val('');
+        $("#choiceTwo").val('');
+        $("#choiceThree").val('');
+        $("#choiceFour").val('');
+        $('input[name="correctAnswer"]').prop('checked', false);
       },
       error: function (xhr, status, error) {
         // Handle the error

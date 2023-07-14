@@ -37,71 +37,49 @@ include('dbconn.php');
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            <form id="addQuestionForm" method="post">
+            <form id="addQuestionForm">
               <div class="form-floating">
-                <textarea class="form-control" placeholder="Leave a comment here" name="yourQuestion" id="yourQuestion" style="height: 100px"></textarea>
+                <textarea class="form-control" placeholder="Leave a comment here" name="yourQuestion" id="yourQuestion" style="height: 100px" required></textarea>
                 <label for="yourQuestion">What is your question?</label>
               </div>
 
               <label for="choiceOne" class="form-label">Choice 1</label>
               <div class="input-group">
                 <div class="input-group-text">
-                  <input class="form-check-input mt-0" type="radio" name="correctAnswer" value="Choice One" aria-label="Radio button for following text input">
+                  <input class="form-check-input mt-0" type="radio" name="correctAnswer" value="Choice One" aria-label="Radio button for following text input" required>
                 </div>
 
-                <input type="text" name="choiceOne" id="choiceOne" class="form-control" aria-label="Text input with radio button">
+                <input type="text" name="choiceOne" id="choiceOne" class="form-control" aria-label="Text input with radio button" required>
               </div>
 
 
               <label for="choiceTwo" class="form-label">Choice 2</label>
               <div class="input-group">
                 <div class="input-group-text">
-                  <input class="form-check-input mt-0" type="radio" name="correctAnswer" value="Choice Two" aria-label="Radio button for following text input">
+                  <input class="form-check-input mt-0" type="radio" name="correctAnswer" value="Choice Two" aria-label="Radio button for following text input" required>
                 </div>
 
-                <input type="text" name="choiceTwo" id="choiceTwo" class="form-control" aria-label="Text input with radio button">
+                <input type="text" name="choiceTwo" id="choiceTwo" class="form-control" aria-label="Text input with radio button" required>
               </div>
 
 
               <label for="choiceThree" class="form-label">Choice 3</label>
               <div class="input-group">
                 <div class="input-group-text">
-                  <input class="form-check-input mt-0" type="radio" name="correctAnswer" value="Choice Three" aria-label="Radio button for following text input">
+                  <input class="form-check-input mt-0" type="radio" name="correctAnswer" value="Choice Three" aria-label="Radio button for following text input" required>
                 </div>
 
-                <input type="text" name="choiceThree" id="choiceThree" class="form-control" aria-label="Text input with radio button">
+                <input type="text" name="choiceThree" id="choiceThree" class="form-control" aria-label="Text input with radio button" required>
               </div>
 
               <label for="choiceFour" class="form-label">Choice 4</label>
               <div class="input-group">
                 <div class="input-group-text">
-                  <input class="form-check-input mt-0" type="radio" name="correctAnswer" value="Choice Four" aria-label="Radio button for following text input">
+                  <input class="form-check-input mt-0" type="radio" name="correctAnswer" value="Choice Four" aria-label="Radio button for following text input" required>
                 </div>
 
-                <input type="text" name="choiceFour" id="choiceFour" class="form-control" aria-label="Text input with radio button">
+                <input type="text" name="choiceFour" id="choiceFour" class="form-control" aria-label="Text input with radio button" required>
               </div>
-
-
-
-              <!-- <div class="mb-3 mt-3">
-                <label for="choiceOne" class="form-label">Choice 1</label>
-                <input type="text" class="form-control" name="choiceOne" id="choiceOne" placeholder="">
-              </div>
-
-              <div class="mb-3">
-                <label for="choiceTwo" class="form-label">Choice 2</label>
-                <input type="text" class="form-control" name="choiceTwo" id="choiceTwo" placeholder="">
-              </div>
-
-              <div class="mb-3">
-                <label for="choiceThree" class="form-label">Choice 3</label>
-                <input type="text" class="form-control" name="choiceThree" id="choiceThree" placeholder="">
-              </div>
-
-              <div class="mb-3">
-                <label for="choiceFour" class="form-label">Choice 4</label>
-                <input type="text" class="form-control" name="choiceFour" id="choiceFour" placeholder="">
-              </div> -->
           </div>
           <div class="modal-footer">
             <button onclick="addQuestion()" type="submit" name="addQuestionName" class="btn btn-primary">Add</button>
