@@ -38,6 +38,26 @@ function addQuestion() {
   });
 }
 
+function loadQuestions(){
+  //TO BE CONTINUED....
+  $.ajax({
+    url: 'get_questions.php', // Replace with your server-side script URL
+    method: 'GET', // Use the appropriate HTTP method (GET, POST, etc.)
+    dataType: 'json', // Specify the expected data type
+    success: function(data) {
+      // Handle the returned data
+      console.log(data); // Example: Output the data to the console
+      
+      // Process the data and populate your table or perform other actions
+      // Here, you can use jQuery DataTables or any other method to display the data
+    },
+    error: function(xhr, status, error) {
+      // Handle any errors that occur during the request
+      console.error(status + ': ' + error);
+    }
+  });
+}
+
 function logOut(){
   $.ajax({
     url: 'backend/logout.php',

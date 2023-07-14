@@ -84,12 +84,16 @@
             			type: "POST",
             			url: "backend/login.php",
             			data: formData,
-            			success: function(html){
-                    		if(html=='true'){
+            			success: function(role){
+                    		if(role=='admin'){
                     			var delay = 1000;
+                    			setTimeout(function(){ window.location = 'admin.php' }, delay);  
+                    			show_success_alert();
+                    		}else if(role=='employer'){
+                          var delay = 1000;
                     			setTimeout(function(){ window.location = 'evaluation.php' }, delay);  
                     			show_success_alert();
-                    		}
+                        }
                     		else{
                     			show_Err_alert();
                     		}

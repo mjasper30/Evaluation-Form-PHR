@@ -1,6 +1,16 @@
 <?php
 include('includes/dbconn.php');
+
+session_start();
+
+// Check if the session variable is not set or does not contain the necessary data
+if (!isset($_SESSION['role']) || empty($_SESSION['role'])) {
+    // Redirect to the login page or display an error message
+    header("Location: index.php");
+    exit();
+}
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -21,82 +31,10 @@ include('includes/dbconn.php');
 
 <body>
   <div class="container">
-    <!-- Add Button Question trigger modal -->
     <div class="row">
       <div class="col-2 mb-3">
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addQuestionModal">
-          Add Question
-        </button>
+          <button onclick="logOut()" name="logOut" class="btn btn-primary">Logout</button>
       </div>
-      <div class="col-2 mb-3">
-        <button onclick="logOut()" name="logOut" class="btn btn-primary">Logout</button>
-      </div>
-    </div>
-
-
-    <!-- Add Question Modal -->
-    <div class="modal fade" id="addQuestionModal" tabindex="-1" aria-labelledby="addQuestionModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h1 class="modal-title fs-5" id="addQuestionModalLabel">Add Question</h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <form id="addQuestionForm">
-              <div class="form-floating">
-                <textarea class="form-control" placeholder="Leave a comment here" name="yourQuestion" id="yourQuestion" style="height: 100px" required></textarea>
-                <label for="yourQuestion">What is your question?</label>
-              </div>
-
-              <label for="choiceOne" class="form-label">Choice 1</label>
-              <div class="input-group">
-                <div class="input-group-text">
-                  <input class="form-check-input mt-0" type="radio" name="correctAnswer" value="Choice One" aria-label="Radio button for following text input" required>
-                </div>
-
-                <input type="text" name="choiceOne" id="choiceOne" class="form-control" aria-label="Text input with radio button" required>
-              </div>
-
-
-              <label for="choiceTwo" class="form-label">Choice 2</label>
-              <div class="input-group">
-                <div class="input-group-text">
-                  <input class="form-check-input mt-0" type="radio" name="correctAnswer" value="Choice Two" aria-label="Radio button for following text input" required>
-                </div>
-
-                <input type="text" name="choiceTwo" id="choiceTwo" class="form-control" aria-label="Text input with radio button" required>
-              </div>
-
-
-              <label for="choiceThree" class="form-label">Choice 3</label>
-              <div class="input-group">
-                <div class="input-group-text">
-                  <input class="form-check-input mt-0" type="radio" name="correctAnswer" value="Choice Three" aria-label="Radio button for following text input" required>
-                </div>
-
-                <input type="text" name="choiceThree" id="choiceThree" class="form-control" aria-label="Text input with radio button" required>
-              </div>
-
-              <label for="choiceFour" class="form-label">Choice 4</label>
-              <div class="input-group">
-                <div class="input-group-text">
-                  <input class="form-check-input mt-0" type="radio" name="correctAnswer" value="Choice Four" aria-label="Radio button for following text input" required>
-                </div>
-
-                <input type="text" name="choiceFour" id="choiceFour" class="form-control" aria-label="Text input with radio button" required>
-              </div>
-          </div>
-          <div class="modal-footer">
-            <button onclick="addQuestion()" type="submit" name="addQuestionName" class="btn btn-primary">Add</button>
-          </div>
-          </form>
-        </div>
-      </div>
-    </div>
-
-
-    <div class="row">
       <div class="col-12">
         <!-- Question Form -->
         <div class="quiz-container" id="quiz">
