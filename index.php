@@ -1,138 +1,109 @@
 <?php
-include('includes/dbconn.php');
+    session_start();
+    $_SESSION['loggedin'] = true;
 ?>
+
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="css/style.css" />
-  <title>Evaluation Form</title>
-  <!-- Bootstrap Link CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-  <!-- jQuery Ajax -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
+    <title>Login - Evaluation</title>
+	<script src="js/jquery-1.9.1.min.js"></script>
+	<?php include('includes/dbconn.php'); ?>
+	<!--CSS Bootstrap CDN-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <!--Alert JS-->
+    <script src="js/alert.js"></script>
+    <!--Alert CSS-->
+    <link rel="stylesheet" href="css/alert.css">
+    <!--Animate CSS-->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <style>
+        .bg-image-vertical {
+            position: relative;
+            overflow: hidden;
+            background-repeat: no-repeat;
+            background-position: right center;
+            background-size: auto 100%;
+        }
+        
+        @media (min-width: 1025px) {
+            .h-custom-2 {
+                height: 100%;
+            }
+        }
+    </style>
 </head>
 
-<body>
-  <div class="container">
-    <!-- Add Button Question trigger modal -->
-    <div class="row">
-      <div class="col-2 mb-3">
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addQuestionModal">
-          Add Question
-        </button>
-      </div>
-    </div>
-
-
-    <!-- Add Question Modal -->
-    <div class="modal fade" id="addQuestionModal" tabindex="-1" aria-labelledby="addQuestionModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h1 class="modal-title fs-5" id="addQuestionModalLabel">Add Question</h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <form id="addQuestionForm">
-              <div class="form-floating">
-                <textarea class="form-control" placeholder="Leave a comment here" name="yourQuestion" id="yourQuestion" style="height: 100px" required></textarea>
-                <label for="yourQuestion">What is your question?</label>
-              </div>
-
-              <label for="choiceOne" class="form-label">Choice 1</label>
-              <div class="input-group">
-                <div class="input-group-text">
-                  <input class="form-check-input mt-0" type="radio" name="correctAnswer" value="Choice One" aria-label="Radio button for following text input" required>
+    <body>
+          <div class="container d-flex align-items-center justify-content-center">
+            <div class="row">
+              <div class="col-sm-6 text-black animate__animated animate__bounceInLeft">
+        
+                <div class="d-flex align-items-center h-custom-2 px-5 ms-xl-4 mt-5 pt-5 pt-xl-0 mt-xl-n5">
+        
+                  <form style="width: 23rem;" id="login_form"  method="post">
+        
+                    <h3 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Welcome to Evaluation of PHR</h3>
+        
+                    <div class="form-outline mb-4">
+                      <label class="form-label" for="username">Username</label>
+                      <input type="text"  id="username" name="username" placeholder="Username" class="form-control form-control-lg" required/>
+                    </div>
+        
+                    <div class="form-outline mb-4">
+                      <label class="form-label" for="password">Password</label>
+                      <input type="password" id="password" name="password" placeholder="Password" class="form-control form-control-lg" required/>
+                    </div>
+        
+                    <div class="pt-1 mb-4">
+                      <button name="login" type="submit" class="btn btn-info btn-lg btn-block">Login</button>
+                    </div>
+        
+                  </form>
+        
                 </div>
-
-                <input type="text" name="choiceOne" id="choiceOne" class="form-control" aria-label="Text input with radio button" required>
+        
               </div>
-
-
-              <label for="choiceTwo" class="form-label">Choice 2</label>
-              <div class="input-group">
-                <div class="input-group-text">
-                  <input class="form-check-input mt-0" type="radio" name="correctAnswer" value="Choice Two" aria-label="Radio button for following text input" required>
-                </div>
-
-                <input type="text" name="choiceTwo" id="choiceTwo" class="form-control" aria-label="Text input with radio button" required>
+              <div class="col-sm-6 px-0 d-none d-sm-block animate__animated animate__bounceInRight">
+                <img src="images/login_bg1.svg"
+                  alt="Login image" style="object-fit: cover; object-position: left;">
               </div>
-
-
-              <label for="choiceThree" class="form-label">Choice 3</label>
-              <div class="input-group">
-                <div class="input-group-text">
-                  <input class="form-check-input mt-0" type="radio" name="correctAnswer" value="Choice Three" aria-label="Radio button for following text input" required>
-                </div>
-
-                <input type="text" name="choiceThree" id="choiceThree" class="form-control" aria-label="Text input with radio button" required>
-              </div>
-
-              <label for="choiceFour" class="form-label">Choice 4</label>
-              <div class="input-group">
-                <div class="input-group-text">
-                  <input class="form-check-input mt-0" type="radio" name="correctAnswer" value="Choice Four" aria-label="Radio button for following text input" required>
-                </div>
-
-                <input type="text" name="choiceFour" id="choiceFour" class="form-control" aria-label="Text input with radio button" required>
-              </div>
+            </div>
           </div>
-          <div class="modal-footer">
-            <button onclick="addQuestion()" type="submit" name="addQuestionName" class="btn btn-primary">Add</button>
-          </div>
-          </form>
-        </div>
-      </div>
-    </div>
 
+    		
+    	<script>
+    		jQuery(document).ready(function(){
+        		jQuery("#login_form").submit(function(e){
+            		e.preventDefault();
+            		var formData = jQuery(this).serialize();
+            		$.ajax({
+            			type: "POST",
+            			url: "backend/login.php",
+            			data: formData,
+            			success: function(html){
+                    		if(html=='true'){
+                    			var delay = 1000;
+                    			setTimeout(function(){ window.location = 'evaluation.php' }, delay);  
+                    			show_success_alert();
+                    		}
+                    		else{
+                    			show_Err_alert();
+                    		}
+            			}
+            						
+            		});
+            		let form = document.getElementById('login_form');
+                    form.reset();
+            		return false;
+        		});
+    		});
+    	</script>  
 
-    <div class="row">
-      <div class="col-12">
-        <!-- Question Form -->
-        <div class="quiz-container" id="quiz">
-          <div class="quiz-header">
-            <h2 id="question">Question text</h2>
-            <ul>
-              <li>
-                <input type="radio" name="answer" id="a" class="answer">
-                <label for="a" id="a_text">Question</label>
-              </li>
-
-              <li>
-                <input type="radio" name="answer" id="b" class="answer">
-                <label for="b" id="b_text">Question</label>
-              </li>
-
-              <li>
-                <input type="radio" name="answer" id="c" class="answer">
-                <label for="c" id="c_text">Question</label>
-              </li>
-
-              <li>
-                <input type="radio" name="answer" id="d" class="answer">
-                <label for="d" id="d_text">Question</label>
-              </li>
-            </ul>
-          </div>
-          <button id="submit">Submit</button>
-        </div>
-      </div>
-    </div>
-
-
-  </div>
-  <!-- Functionality -->
-  <script src="js/script.js"></script>
-  <!-- Crud -->
-  <script src="js/crud.js"></script>
-
-  <!-- Boostrap Link JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous">
-  </script>
-</body>
-
+        <!--JS Bootstrap CDN-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    </body>
 </html>

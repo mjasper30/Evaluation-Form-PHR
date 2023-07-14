@@ -28,11 +28,29 @@ function addQuestion() {
         $("#choiceThree").val('');
         $("#choiceFour").val('');
         $('input[name="correctAnswer"]').prop('checked', false);
+        add_question_alert();
       },
       error: function (xhr, status, error) {
         // Handle the error
         console.error("Error adding data:", error);
       },
     });
+  });
+}
+
+function logOut(){
+  $.ajax({
+    url: 'backend/logout.php',
+    type: 'POST',
+    success: function(response) {
+      // Redirect to the login page or perform any other actions
+      var delay = 1000;
+      setTimeout(function(){ window.location = 'index.php' }, delay);  
+      logout_success_alert();
+    },
+    error: function(xhr, status, error) {
+      // Handle error
+      console.log(error);
+    }
   });
 }
