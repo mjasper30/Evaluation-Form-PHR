@@ -96,3 +96,14 @@ submitBtn.addEventListener('click', () => {
         }
     }
 })
+
+const textarea = document.getElementById('yourQuestion');
+
+textarea.addEventListener('input', function() {
+  const maxLength = parseInt(textarea.getAttribute('maxlength'));
+  const currentLength = textarea.value.length;
+
+  if (currentLength > maxLength) {
+    textarea.value = textarea.value.slice(0, maxLength); // Truncate the text
+  }
+});

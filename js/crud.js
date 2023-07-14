@@ -28,6 +28,8 @@ function addQuestion() {
         $("#choiceThree").val('');
         $("#choiceFour").val('');
         $('input[name="correctAnswer"]').prop('checked', false);
+        
+        // Load the updated data into the table
         add_question_alert();
       },
       error: function (xhr, status, error) {
@@ -38,18 +40,45 @@ function addQuestion() {
   });
 }
 
-function loadQuestions(){
-  //TO BE CONTINUED....
+
+function loadQuestions() {
+  var table = $('#myTable').DataTable({
+    columnDefs: [
+      { targets: [2, 3, 4, 5, 6, 7], orderable: false } // Hide sorting for columns 1 and 3
+    ]
+  });
+
   $.ajax({
-    url: 'get_questions.php', // Replace with your server-side script URL
+    url: 'get_questions.php', // Replace with the correct path to your PHP script
     method: 'GET', // Use the appropriate HTTP method (GET, POST, etc.)
     dataType: 'json', // Specify the expected data type
     success: function(data) {
       // Handle the returned data
       console.log(data); // Example: Output the data to the console
-      
-      // Process the data and populate your table or perform other actions
-      // Here, you can use jQuery DataTables or any other method to display the data
+
+      // Clear any existing data from the table
+      table.clear();
+
+      // Loop through the data and add rows to the table
+      $.each(data, function(index, question) {
+        // Create a button element
+        var editButton = '<div class="row"><div class="col-6"><button class="btn btn-warning mb-2" data-id="' + question.question_id + '"><i class="bi bi-pencil-square"></i></button></div>';
+        var deleteButton = '<div class="col-6"><button class="btn btn-danger" data-id="' + question.question_id + '"><i class="bi bi-trash"></i></button></div></div>';
+
+        table.row.add([
+          question.question_id,
+          question.question,
+          question.choice_a,
+          question.choice_b,
+          question.choice_c,
+          question.choice_d,
+          question.correct_answer,
+          editButton + deleteButton
+        ]);
+      });
+
+      // Redraw the table to display the new data
+      table.draw();
     },
     error: function(xhr, status, error) {
       // Handle any errors that occur during the request
@@ -57,6 +86,7 @@ function loadQuestions(){
     }
   });
 }
+
 
 function logOut(){
   $.ajax({
