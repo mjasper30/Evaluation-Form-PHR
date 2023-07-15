@@ -16,7 +16,8 @@ function loadQuestions() {
       { 
         data: null,
         render: function(data, type, row) {
-          return '<button class="btn btn-warning"><i class="bi bi-pencil-square"></i></button>' + '<button class="ms-2 btn btn-danger"><i class="bi bi-trash"></i></button>';
+          var questionID = row.question_id;
+          return '<button onclick="alert("hello");" data-bs-toggle="modal" data-bs-target="#editModal" class="btn btn-warning edit-btn" data-question-id="' + questionID + '"><i class="bi bi-pencil-square"></i></button>' + '<button class="ms-2 btn btn-danger"><i class="bi bi-trash"></i></button>';
         }
       },
     ],
@@ -25,6 +26,8 @@ function loadQuestions() {
     ]
   });
 }
+
+
 
 function addQuestion() {
   $("#addQuestionForm").submit(function (e) {
