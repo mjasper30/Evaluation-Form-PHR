@@ -86,7 +86,7 @@ $_SESSION['loggedin'] = true;
                     if (role == 'admin') {
                         var delay = 1000;
                         setTimeout(function() {
-                            window.location = 'admin.php'
+                            window.location = 'admin/index.php'
                         }, delay);
                         show_success_alert();
                     } else if (role == 'employer') {
