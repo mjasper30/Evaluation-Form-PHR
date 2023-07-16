@@ -149,6 +149,13 @@ function show_confirm_alert(){
         content: '',
       })
     }
+    function edit_question_alert(){
+      New.alert({
+        status: 'success',
+        title: 'Question Edited Successfully',
+        content: '',
+      })
+    }
      New.alert({
         status: 'info',
         title: 'welcome',

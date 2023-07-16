@@ -1,25 +1,40 @@
 <?php
-// Assuming you have already established a database connection using mysqli
+require('includes/dbconn.php');
 
-// Retrieve the form data
-$questionId = $_POST['questionId'];
-$yourQuestion = mysqli_real_escape_string($conn, $_POST['yourQuestion']);
-$choiceOne = mysqli_real_escape_string($conn, $_POST['choiceOne']);
-$choiceTwo = mysqli_real_escape_string($conn, $_POST['choiceTwo']);
-$choiceThree = mysqli_real_escape_string($conn, $_POST['choiceThree']);
-$choiceFour = mysqli_real_escape_string($conn, $_POST['choiceFour']);
-$correctAnswer = $_POST['correctAnswer'];
+if (isset($_POST['update_question'])) {
+    $questionId = mysqli_real_escape_string($conn, $_POST['question_id']);
+    $yourQuestion = mysqli_real_escape_string($conn, $_POST['editYourQuestion']);
+    $choiceOne = mysqli_real_escape_string($conn, $_POST['choiceOneEdit']);
+    $choiceTwo = mysqli_real_escape_string($conn, $_POST['choiceTwoEdit']);
+    $choiceThree = mysqli_real_escape_string($conn, $_POST['choiceThreeEdit']);
+    $choiceFour = mysqli_real_escape_string($conn, $_POST['choiceFourEdit']);
+    $correctAnswer = mysqli_real_escape_string($conn, $_POST['correctAnswerEdit']);
 
-// Update the question data in the database
-$sql = "UPDATE `questions` SET `question`='$yourQuestion', `choice_a`='$choiceOne', `choice_b`='$choiceTwo', `choice_c`='$choiceThree', `choice_d`='$choiceFour', `correct_answer`='$correctAnswer' WHERE `question_id`='$questionId'";
+    // if ($yourQuestion == NULL || $choiceOne == NULL || $choiceTwo == NULL || $choiceTwo == NULL || $choiceThree == NULL || $choiceFour == NULL || $correctAnswer || NULL) {
+    //     $res = [
+    //         'status' => 422,
+    //         'message' => 'All fields are mandatory'
+    //     ];
+    //     echo json_encode($res);
+    //     return;
+    // }
 
-if (mysqli_query($conn, $sql)) {
-    // Query executed successfully
-    echo "Data updated successfully.";
-} else {
-    // Error occurred while executing the query
-    echo "Error updating data: " . mysqli_error($conn);
+    $query = "UPDATE `questions` SET `question`='$yourQuestion', `choice_a`='$choiceOne', `choice_b`='$choiceTwo', `choice_c`='$choiceThree', `choice_d`='$choiceFour', `correct_answer`='$correctAnswer' WHERE `question_id`=$questionId";
+    $query_run = mysqli_query($conn, $query);
+
+    if ($query_run) {
+        $res = [
+            'status' => 200,
+            'message' => 'Question Updated Successfully'
+        ];
+        echo json_encode($res);
+        return;
+    } else {
+        $res = [
+            'status' => 500,
+            'message' => 'Question Not Updated'
+        ];
+        echo json_encode($res);
+        return;
+    }
 }
-
-// Close the database connection
-mysqli_close($conn);
