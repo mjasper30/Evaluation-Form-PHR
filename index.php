@@ -92,7 +92,7 @@ $_SESSION['loggedin'] = true;
                     } else if (role == 'employer') {
                         var delay = 1000;
                         setTimeout(function() {
-                            window.location = 'evaluation.php'
+                            window.location = 'employer/evaluation.php'
                         }, delay);
                         show_success_alert();
                     } else {
