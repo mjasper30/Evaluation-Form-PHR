@@ -23,6 +23,7 @@
 
 		// Store the user's role in a session variable
 		$_SESSION['role'] = $role;
+		$_SESSION['username'] = $username;
 
 		// Redirect the user to the appropriate page based on their role
 		if ($role === 'admin') {

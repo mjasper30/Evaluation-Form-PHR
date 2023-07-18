@@ -34,6 +34,7 @@ if (!isset($_SESSION['role']) || empty($_SESSION['role'])) {
     <!-- To be continue -->
     <div class="container">
         <div class="row">
+            <?php echo "Welcome " . $_SESSION['username'];?>
             <div class="col-2 mb-3">
                 <button onclick="logOut()" name="logOut" class="btn btn-primary">Logout</button>
             </div>
