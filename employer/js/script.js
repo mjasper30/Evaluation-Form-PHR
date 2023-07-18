@@ -74,11 +74,36 @@ submitBtn.addEventListener("click", () => {
       quiz.innerHTML = `
                 <h2>You answered ${score}/${quizData.length} questions correctly</h2>
 
-                <button onclick="location.reload()">Reload</button>
+                <button onclick="addScoreToDatabase()">Okay</button>
             `;
     }
   }
 });
+
+function addScoreToDatabase() {
+  const scoreData = {
+    score: score,
+  };
+
+  const requestData =
+    "scoreData=" + encodeURIComponent(JSON.stringify(scoreData));
+
+  fetch("add_score.php", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
+    body: requestData,
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data); // Handle the response from the server if needed
+      location.reload();
+    })
+    .catch((error) => {
+      console.error("Error adding score to the database:", error);
+    });
+}
 
 const textarea = document.getElementById("yourQuestion");
 
