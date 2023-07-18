@@ -56,6 +56,8 @@ $_SESSION['loggedin'] = true;
                             <input type="password" id="password" name="password" placeholder="Password"
                                 class="form-control form-control-lg" required />
                         </div>
+                        <p>Create an account. <a href="signup.php">Sign up
+                                here</a></p>
 
                         <div class="pt-1 mb-4">
                             <button name="login" type="submit" class="btn btn-info btn-lg btn-block">Login</button>

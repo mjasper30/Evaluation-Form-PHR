@@ -161,6 +161,13 @@ function edit_question_alert() {
     content: "",
   });
 }
+function user_exist() {
+  New.alert({
+    status: "error",
+    title: "Username Already Exist",
+    content: "",
+  });
+}
 New.alert({
   status: "info",
   title: "welcome",

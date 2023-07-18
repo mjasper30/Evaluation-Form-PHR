@@ -1,43 +1,35 @@
 <?php
-	include('../includes/dbconn.php');
-	// Retrieve the submitted username and password
-	$username = $_POST['username'] ?? '';
-	$password = $_POST['password'] ?? '';
+include('../includes/dbconn.php');
+// Retrieve the submitted username and password
+$username = $_POST['username'];
+$password = $_POST['password'];
 
-	// Prepare the SQL statement
-	$statement = $conn->prepare("SELECT role FROM person WHERE username = ? AND password = ?");
+$hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-	// Bind parameters
-	$statement->bind_param('ss', $username, $password);
+// Prepare the SQL statement
+$query = "SELECT * FROM person WHERE username = '$username' AND password = '$hashedPassword'";
+$result = $conn->query($query);
 
-	// Execute the statement
-	$statement->execute();
+if ($result->num_rows > 0) {
+	// Start the session
+	session_start();
 
-	// Bind the result to a variable
-	$statement->bind_result($role);
+	// Store the user's role in a session variable
+	$_SESSION['role'] = $role;
+	$_SESSION['username'] = $username;
 
-	// Fetch the result
-	if ($statement->fetch()) {
-		// Start the session
-		session_start();
-
-		// Store the user's role in a session variable
-		$_SESSION['role'] = $role;
-
-		// Redirect the user to the appropriate page based on their role
-		if ($role === 'admin') {
-			echo 'admin';
-		} elseif ($role === 'employer') {
-			echo 'employer';
-		}
-		exit(); // Terminate further script execution
-	} else {
-		// If no row is fetched, the credentials are invalid
-		header("Location: index.php?error=1");
-		exit();
+	// Redirect the user to the appropriate page based on their role
+	if ($role === 'admin') {
+		echo 'admin';
+	} elseif ($role === 'employer') {
+		echo 'employer';
 	}
+	exit(); // Terminate further script execution
+} else {
+	// If no row is fetched, the credentials are invalid
+	header("Location: index.php?error=1");
+	exit();
+}
 
-	// Close the statement and database connection
-	$statement->close();
-	$conn->close();
-?>
+// Close the database connection
+$conn->close();
