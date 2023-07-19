@@ -70,9 +70,6 @@ if (!isset($_SESSION['role']) || empty($_SESSION['role'])) {
             {data: "username" }, // Set width of 150 pixels for the third column
             {data: "role" }, // Set width of 150 pixels for the third column
             ],
-            columnDefs: [
-            { targets: [2], orderable: false }, // Hide sorting for columns 1 and 3
-            ],
         });
         }
     </script>
