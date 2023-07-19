@@ -1,7 +1,7 @@
 <?php
-include('includes/dbconn.php');
+include('../includes/dbconn.php');
 // Fetch data from the database table
-$query = "SELECT * FROM questions"; // Replace with your table name
+$query = "SELECT * FROM scores"; // Replace with your table name
 $result = $conn->query($query);
 
 $data = array();

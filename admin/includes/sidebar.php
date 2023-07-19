@@ -88,7 +88,7 @@
                 <h3>Admin</h3>
             </li>
             <li>
-                <a>
+                <a href="index.php">
                     <svg>
                         <use xlink:href="#questions"></use>
                     </svg>
@@ -96,19 +96,19 @@
                 </a>
             </li>
             <li>
-                <a>
+                <a href="scores.php">
+                    <svg>
+                        <use xlink:href="#trends"></use>
+                    </svg>
+                    <span>Scores</span>
+                </a>
+            </li>
+            <li>
+                <a href="user.php">
                     <svg>
                         <use xlink:href="#users"></use>
                     </svg>
                     <span>Users</span>
-                </a>
-            </li>
-            <li>
-                <a>
-                    <svg>
-                        <use xlink:href="#trends"></use>
-                    </svg>
-                    <span>Trends</span>
                 </a>
             </li>
             <li>
