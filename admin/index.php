@@ -71,10 +71,10 @@ if (!isset($_SESSION['role']) || empty($_SESSION['role'])) {
                         <tr>
                             <th scope="col">ID</th>
                             <th scope="col">Question</th>
-                            <th scope="col">Choice 1</th>
-                            <th scope="col">Choice 2</th>
-                            <th scope="col">Choice 3</th>
-                            <th scope="col">Choice 4</th>
+                            <th scope="col">Choice A</th>
+                            <th scope="col">Choice B</th>
+                            <th scope="col">Choice C</th>
+                            <th scope="col">Choice D</th>
                             <th scope="col">Correct Answer</th>
                             <th style="width: 85px;" scope="col">Action</th>
                         </tr>
@@ -100,7 +100,7 @@ if (!isset($_SESSION['role']) || empty($_SESSION['role'])) {
                                         <label for="yourQuestion">What is your question?</label>
                                     </div>
 
-                                    <label for="choiceOne" class="form-label">Choice 1</label>
+                                    <label for="choiceOne" class="form-label">Choice A</label>
                                     <div class="input-group">
                                         <div class="input-group-text">
                                             <input class="form-check-input mt-0" type="radio" name="correctAnswer" value="a" aria-label="Radio button for following text input" required>
@@ -110,7 +110,7 @@ if (!isset($_SESSION['role']) || empty($_SESSION['role'])) {
                                     </div>
 
 
-                                    <label for="choiceTwo" class="form-label">Choice 2</label>
+                                    <label for="choiceTwo" class="form-label">Choice B</label>
                                     <div class="input-group">
                                         <div class="input-group-text">
                                             <input class="form-check-input mt-0" type="radio" name="correctAnswer" value="b" aria-label="Radio button for following text input" required>
@@ -120,7 +120,7 @@ if (!isset($_SESSION['role']) || empty($_SESSION['role'])) {
                                     </div>
 
 
-                                    <label for="choiceThree" class="form-label">Choice 3</label>
+                                    <label for="choiceThree" class="form-label">Choice C</label>
                                     <div class="input-group">
                                         <div class="input-group-text">
                                             <input class="form-check-input mt-0" type="radio" name="correctAnswer" value="c" aria-label="Radio button for following text input" required>
@@ -129,7 +129,7 @@ if (!isset($_SESSION['role']) || empty($_SESSION['role'])) {
                                         <input type="text" name="choiceThree" id="choiceThree" class="form-control" aria-label="Text input with radio button" required>
                                     </div>
 
-                                    <label for="choiceFour" class="form-label">Choice 4</label>
+                                    <label for="choiceFour" class="form-label">Choice D</label>
                                     <div class="input-group">
                                         <div class="input-group-text">
                                             <input class="form-check-input mt-0" type="radio" name="correctAnswer" value="d" aria-label="Radio button for following text input" required>
@@ -162,7 +162,7 @@ if (!isset($_SESSION['role']) || empty($_SESSION['role'])) {
                                         <label for="yourQuestion">What is your question?</label>
                                     </div>
 
-                                    <label for="choiceOne" class="form-label">Choice 1</label>
+                                    <label for="choiceOne" class="form-label">Choice A</label>
                                     <div class="input-group">
                                         <div class="input-group-text">
                                             <input class="form-check-input mt-0" type="radio" name="correctAnswerEdit" value="a" aria-label="Radio button for following text input" required>
@@ -172,7 +172,7 @@ if (!isset($_SESSION['role']) || empty($_SESSION['role'])) {
                                     </div>
 
 
-                                    <label for="choiceTwo" class="form-label">Choice 2</label>
+                                    <label for="choiceTwo" class="form-label">Choice B</label>
                                     <div class="input-group">
                                         <div class="input-group-text">
                                             <input class="form-check-input mt-0" type="radio" name="correctAnswerEdit" value="b" aria-label="Radio button for following text input" required>
@@ -182,7 +182,7 @@ if (!isset($_SESSION['role']) || empty($_SESSION['role'])) {
                                     </div>
 
 
-                                    <label for="choiceThree" class="form-label">Choice 3</label>
+                                    <label for="choiceThree" class="form-label">Choice C</label>
                                     <div class="input-group">
                                         <div class="input-group-text">
                                             <input class="form-check-input mt-0" type="radio" name="correctAnswerEdit" value="c" aria-label="Radio button for following text input" required>
@@ -191,7 +191,7 @@ if (!isset($_SESSION['role']) || empty($_SESSION['role'])) {
                                         <input type="text" name="choiceThreeEdit" id="choiceThreeEdit" class="form-control" aria-label="Text input with radio button" required>
                                     </div>
 
-                                    <label for="choiceFour" class="form-label">Choice 4</label>
+                                    <label for="choiceFour" class="form-label">Choice D</label>
                                     <div class="input-group">
                                         <div class="input-group-text">
                                             <input class="form-check-input mt-0" type="radio" name="correctAnswerEdit" value="d" aria-label="Radio button for following text input" required>
