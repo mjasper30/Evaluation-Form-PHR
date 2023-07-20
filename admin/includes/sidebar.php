@@ -112,11 +112,11 @@
                 </a>
             </li>
             <li>
-                <a>
+                <a href="textbox.php">
                     <svg>
                         <use xlink:href="#collection"></use>
                     </svg>
-                    <span>Collection</span>
+                    <span>Textbox</span>
                 </a>
             </li>
             <li>
