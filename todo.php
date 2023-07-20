@@ -10,4 +10,16 @@
 // TODO: Your todo list
 // @param myParam The parameter for this method
 
+// TODO: Add the textbox next to the multiple choice
+// TODO: Create category of the question
+// TODO: Create pdf file for the questions
+
+// * DONE: Textbox Adding
+// * DONE: Adding of Question Multiple Choice
+// * DONE: Store the score of the employer to the database
+// * DONE: Applying datatables and AJAX in the System
+// * DONE: Login with Roles 
+// * DONE: Signup for Users
+// * DONE: Alert Show
+// * DONE: Dashboard
  */
