@@ -13,6 +13,7 @@
 // TODO: Add the textbox next to the multiple choice
 // TODO: Create category of the question
 // TODO: Create pdf file for the questions
+// TODO: Generate text message
 
 // * DONE: Textbox Adding
 // * DONE: Adding of Question Multiple Choice
@@ -22,4 +23,5 @@
 // * DONE: Signup for Users
 // * DONE: Alert Show
 // * DONE: Dashboard
+
  */
