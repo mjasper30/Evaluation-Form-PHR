@@ -14,6 +14,7 @@
 // TODO: Create category of the question
 // TODO: Create pdf file for the questions
 // TODO: Generate text message
+// TODO: Generete color
 
 // * DONE: Textbox Adding
 // * DONE: Adding of Question Multiple Choice
