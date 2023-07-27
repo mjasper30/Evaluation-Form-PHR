@@ -191,7 +191,7 @@ if (!isset($_SESSION['role']) || empty($_SESSION['role'])) {
 
         // Get id and value from the table
         $(document).on("click", ".editTextboxBtn", function () {
-        var textbox_id = $(".editTextboxBtn").data("textbox-id");
+        var textbox_id = $(this).data("textbox-id");
         // var textbox_id = $(this).val();
 
         $.ajax({
