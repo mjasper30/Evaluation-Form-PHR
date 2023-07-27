@@ -42,7 +42,7 @@ function loadQuestions() {
 
 // Get id and value from the table
 $(document).on("click", ".editQuestionBtn", function () {
-  var question_id = $(".editQuestionBtn").data("question-id");
+  var question_id = $(this).data("question-id");
   // var question_id = $(this).val();
 
   $.ajax({
