@@ -61,9 +61,15 @@ if (!isset($_SESSION['role']) || empty($_SESSION['role'])) {
                             <i class="bi bi-plus-lg"></i>
                             Add Question
                         </button>
+
+                        <a href="generate_questions_fpdf.php" class="hfef" target="_blank">
+                            <button type="button" class="btn btn-primary">
+                                <i class="bi bi-printer-fill"></i>
+                                Print
+                            </button>
+                        </a>
                     </div>
                 </div>
-
 
                 <!-- Table -->
                 <table id="myTable" class="table table-info table-striped table-hover">
