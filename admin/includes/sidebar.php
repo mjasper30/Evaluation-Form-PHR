@@ -8,10 +8,8 @@
             d="M8,0a8,8,0,1,0,8,8A8,8,0,0,0,8,0ZM8,15a7,7,0,0,1-5.19-2.32,2.71,2.71,0,0,1,1.7-1,13.11,13.11,0,0,0,1.29-.28,2.32,2.32,0,0,0,.94-.34,1.17,1.17,0,0,0-.27-.7h0A3.61,3.61,0,0,1,5.15,7.49,3.18,3.18,0,0,1,8,4.07a3.18,3.18,0,0,1,2.86,3.42,3.6,3.6,0,0,1-1.32,2.88h0a1.13,1.13,0,0,0-.27.69,2.68,2.68,0,0,0,.93.31,10.81,10.81,0,0,0,1.28.23,2.63,2.63,0,0,1,1.78,1A7,7,0,0,1,8,15Z" />
     </symbol>
     <symbol id="collection" viewBox="0 0 16 16">
-        <rect width="7" height="7" />
-        <rect y="9" width="7" height="7" />
-        <rect x="9" width="7" height="7" />
-        <rect x="9" y="9" width="7" height="7" />
+        <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h13zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z"/>
+        <path d="M3 5.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM3 8a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 8zm0 2.5a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5z"/>
     </symbol>
     <symbol id="charts" viewBox="0 0 16 16">
         <polygon
@@ -96,6 +94,14 @@
                 </a>
             </li>
             <li>
+                <a href="textbox.php">
+                    <svg>
+                        <use xlink:href="#collection"></use>
+                    </svg>
+                    <span>Textbox</span>
+                </a>
+            </li>
+            <li>
                 <a href="scores.php">
                     <svg>
                         <use xlink:href="#trends"></use>
@@ -111,15 +117,7 @@
                     <span>Users</span>
                 </a>
             </li>
-            <li>
-                <a href="textbox.php">
-                    <svg>
-                        <use xlink:href="#collection"></use>
-                    </svg>
-                    <span>Textbox</span>
-                </a>
-            </li>
-            <li>
+            <!-- <li>
                 <a>
                     <svg>
                         <use xlink:href="#comments"></use>
@@ -134,11 +132,11 @@
                     </svg>
                     <span>Appearance</span>
                 </a>
-            </li>
+            </li> -->
             <li class="menu-heading">
                 <h3>Settings</h3>
             </li>
-            <li>
+            <!-- <li>
                 <a>
                     <svg>
                         <use xlink:href="#settings"></use>
@@ -161,7 +159,7 @@
                     </svg>
                     <span>Charts</span>
                 </a>
-            </li>
+            </li> -->
             <li>
                 <a>
                     <svg>
