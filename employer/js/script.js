@@ -1,4 +1,5 @@
 let quizData; // Declare the quizData variable
+let quizDataTextbox; // Declare the quizData variable
 
 const quiz = document.getElementById("quiz");
 const answerEls = document.querySelectorAll(".answer");
@@ -9,10 +10,16 @@ const c_text = document.getElementById("c_text");
 const d_text = document.getElementById("d_text");
 const submitBtn = document.getElementById("submit");
 
+//Textbox
+const textbox = document.getElementById("textbox");
+const textboxAnswer = document.getElementById("textboxAnswer");
+const submitBtnTextbox = document.getElementById("submitBtnTextbox");
+
 let currentQuiz = 0;
 let score = 0;
 
 loadQuiz();
+loadTextbox();
 
 function loadQuiz() {
   deselectAnswers();
@@ -33,6 +40,28 @@ function loadQuiz() {
       b_text.innerText = currentQuizData.b;
       c_text.innerText = currentQuizData.c;
       d_text.innerText = currentQuizData.d;
+    })
+    .catch((error) => {
+      // Handle any errors
+      console.error("Error fetching quiz data:", error);
+    });
+}
+
+function loadTextbox() {
+  // deselectAnswers();
+
+  const quizUrl = "list_of_textbox.php";
+
+  fetch(quizUrl)
+    .then((response) => response.json())
+    .then((data) => {
+      // Process the fetched data
+      console.log(data); // or do something else with the data
+      quizDataTextbox = data;
+
+      const currentQuizData = data[currentQuiz];
+
+      textbox.innerText = currentQuizData.textbox;
     })
     .catch((error) => {
       // Handle any errors
@@ -72,7 +101,7 @@ submitBtn.addEventListener("click", () => {
       loadQuiz();
     } else {
       quiz.innerHTML = `
-                <h2>You answered ${score}/${quizData.length} questions correctly</h2>
+                <h2 id="question">Lets now proceed to know your opinion</h2>
 
                 <button onclick="addScoreToDatabase()">Okay</button>
             `;
@@ -98,7 +127,7 @@ function addScoreToDatabase() {
     .then((response) => response.json())
     .then((data) => {
       console.log(data); // Handle the response from the server if needed
-      location.reload();
+      location.replace("textbox.php");
     })
     .catch((error) => {
       console.error("Error adding score to the database:", error);

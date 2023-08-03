@@ -41,36 +41,62 @@ if (!isset($_SESSION['role']) || empty($_SESSION['role'])) {
                 <!-- Question Form -->
                 <div class="quiz-container" id="quiz">
                     <div class="quiz-header">
-                        <h2 id="question">Question text</h2>
-                        <ul>
-                            <li>
-                                <input type="radio" name="answer" id="a" class="answer">
-                                <label for="a" id="a_text">Question</label>
-                            </li>
-
-                            <li>
-                                <input type="radio" name="answer" id="b" class="answer">
-                                <label for="b" id="b_text">Question</label>
-                            </li>
-
-                            <li>
-                                <input type="radio" name="answer" id="c" class="answer">
-                                <label for="c" id="c_text">Question</label>
-                            </li>
-
-                            <li>
-                                <input type="radio" name="answer" id="d" class="answer">
-                                <label for="d" id="d_text">Question</label>
-                            </li>
-                        </ul>
+                        <h2 id="textbox">Sample textbox question</h2>
+                        <div class="form-floating">
+                            <textarea class="form-control" placeholder="Leave a comment here" id="answer" name="answer" style="height: 100px"></textarea>
+                            <label for="answer">Answer</label>
+                        </div>
                     </div>
-                    <button id="submit">Submit</button>
+                    <button id="submitBtnTextbox">Submit</button>
                 </div>
             </div>
         </div>
 
 
     </div>
+
+    <script>
+    submitBtnTextbox.addEventListener("click", () => {
+        const answer = document.getElementById("answer").value.trim();
+
+        // Ensure the answer is not empty before proceeding
+        if (answer !== "") {
+        const dataToSave = {
+            answer: answer, // Assign the textarea value to the answer property
+        };
+        console.log(dataToSave);
+
+        saveDataToDatabase(dataToSave);
+        }
+    });
+
+    function saveDataToDatabase(data) {
+        const requestData = "data=" + encodeURIComponent(JSON.stringify(data));
+        
+        fetch("add_data.php", {
+            method: "POST",
+            headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+            },
+            body: requestData,
+        })
+            .then((response) => response.json())
+            .then((data) => {
+            if (data.success) {
+                console.log("Data saved successfully");
+                // Optionally, you can show a success message to the user here.
+            } else {
+                console.error("Error adding data to the database:", data.message);
+                // Optionally, you can show an error message to the user here.
+            }
+            })
+            .catch((error) => {
+            console.error("Error sending data to the server:", error);
+            // Optionally, you can show a general error message to the user here.
+        });
+    }
+
+    </script>
     <!-- Functionality -->
     <script src="js/script.js"></script>
     <!-- Crud -->
