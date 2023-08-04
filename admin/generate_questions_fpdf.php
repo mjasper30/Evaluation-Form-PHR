@@ -2,36 +2,60 @@
 require('../fpdf/fpdf.php'); // Include the FPDF library
 
 date_default_timezone_set('Asia/Manila');
+// Get the current date in Y-m-d format
+$currentDate = date("Y-m-d");
 
+// Convert the current date to a timestamp
+$timestamp = strtotime($currentDate);
+
+// Format the date in the desired format
+$formattedDate = date("d.m.Y", $timestamp);
 
 // Function to generate the PDF
 function generatePDF($title, $name, $questions)
 {
     // Create a DateTime object with the current date
     $now = new DateTime();
+    // Get the current year
+    $currentYear = date("Y");
+    $subtitle = "General Questionaire";
 
     // Format the date in a human-readable format
     $formattedDate = $now->format('F j, Y');
     $pdf = new FPDF();
     $pdf->AddPage();
 
+    // Set font and size for title
+    $pdf->SetFont('Arial', 'B', 6);
+    $pdf->Cell(40, 1, "HR Evaluation Form - " . $currentYear . "-HR-EF-OPD", 0, 1, 'C');
+
     // Add image
     $logoPath = 'images/phr-logo.png'; // Set the image file path here
-    $pdf->Image($logoPath, 55, 10, 15); // Adjust the coordinates and size as needed
+    $pdf->Image($logoPath, 100, 5, 10); // Adjust the coordinates and size as needed
 
     // Set font and size for title
-    $pdf->SetFont('Arial', 'B', 18);
+    $pdf->SetFont('Arial', 'B', 14);
     $pdf->Cell(0, 10, $title, 0, 1, 'C');
-    $pdf->Ln(1); // Add some spacing
+    $pdf->Ln(-9); // Add some spacing
 
     // Set font and size for title
-    $pdf->SetFont('Arial', 'B', 18);
-    $pdf->Cell(0, 10, '________________' , 0, 1, 'C');
+    $pdf->SetFont('Arial', '', 18);
+    $pdf->Cell(0, 10, '______________________' , 0, 1, 'C');
+    $pdf->Ln(-3); // Add some spacing
+
+    // Set font and size for title
+    $pdf->SetFont('Arial', '', 10);
+    $pdf->Cell(0, 10, $subtitle, 0, 1, 'C');
     $pdf->Ln(10); // Add some spacing
 
     // Set font and size for name
     $pdf->SetFont('Arial', 'B', 12);
-    $pdf->Cell(0, 10, "Employer's Name: " . $name, 0, 1, 'L');
+    $pdf->Cell(0, 10, "Employee's Name: " . $name, 0, 1, 'L');
+    $pdf->Ln(1); // Add some spacing after the name
+
+    // Set font and size for name
+    $pdf->SetFont('Arial', 'B', 12);
+    $pdf->Cell(0, 10, "Division: " . $name, 0, 1, 'L');
     $pdf->Ln(1); // Add some spacing after the name
 
     // Set font and size for name
@@ -81,7 +105,8 @@ if ($result->num_rows > 0) {
 $conn->close();
 
 // Call the function to generate the PDF
-$title = "Questions"; // Set the title here
+$title = "Examination " . $formattedDate; // Set the title here
+
 $name = "___________________________"; // Set the name here
 generatePDF($title, $name, $questions);
 ?>
