@@ -1,60 +1,46 @@
 <?php
 session_start();
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "evaluation_form";
 
-// Make sure the request is a POST request
+// Handle the AJAX request and save the data to the database
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Get the raw POST data
-    $postData = file_get_contents('php://input');
+    if (!empty($_POST['answer'])) {
+        $answer = $_POST['answer'];
 
-    // Convert the JSON data to an associative array
-    $data = json_decode($postData, true);
+        // Create a connection to the database
+        $conn = mysqli_connect($servername, $username, $password, $dbname);
 
-    // Validate the data (optional - based on your requirements)
+        // Check connection
+        if (!$conn) {
+            die("Connection failed: " . mysqli_connect_error());
+        }
 
-    // Perform database operations to save the data
-    saveToDatabase($data);
-
-    // Send a response (optional - you can customize the response if needed)
-    $response = array('success' => true, 'message' => 'Data saved successfully');
-    echo json_encode($response);
-} else {
-    // If the request method is not POST, return an error response
-    $response = array('success' => false, 'message' => 'Invalid request method');
-    echo json_encode($response);
-}
-
-function saveToDatabase($data) {
-    include('includes/dbconn.php');
-
-    // Escape special characters to prevent SQL injection (optional but recommended)
-    $answer = $conn->real_escape_string($data['answer']);
-
-    // Check if the $_SESSION['username'] is set before using it
-    if (isset($_SESSION['username'])) {
+        // Escape the answer to prevent SQL injection (optional but recommended)
+        $escapedAnswer = mysqli_real_escape_string($conn, $answer);
         $username = $_SESSION['username'];
+
+        // Prepare the insert query
+        $sql = "INSERT INTO textbox_responses (username, answer) VALUES ('$username', '$escapedAnswer')";
+
+        if (mysqli_query($conn, $sql)) {
+            // Successfully inserted the data
+            echo json_encode(['status' => 'success']);
+        } else {
+            // Handle database query errors
+            echo json_encode(['status' => 'error', 'message' => mysqli_error($conn)]);
+        }
+
+        // Close the database connection
+        mysqli_close($conn);
     } else {
-        // Handle the case when username session is not set
-        // For example, you can redirect to the login page or show an error message
-        // depending on your application's logic.
-        $response = array('success' => false, 'message' => 'Error saving data to the database');
-        echo json_encode($response);
-        exit();
+        // If the answer is empty, send an error response
+        echo json_encode(['status' => 'error', 'message' => 'Answer cannot be empty.']);
     }
-
-    // Prepare and execute the SQL query to insert the data into the database
-    $sql = "INSERT INTO textbox_responses (username, answer) VALUES ('$username', '$answer')";
-
-    if ($conn->query($sql) === TRUE) {
-        // Data inserted successfully
-        $response = array('success' => true, 'message' => 'Data saved successfully');
-        echo json_encode($response);
-    } else {
-        // Handle the case when data insertion fails
-        $response = array('success' => false, 'message' => 'Error saving data to the database');
-        echo json_encode($response);
-    }
-
-    // Close the database connection
-    $conn->close();
 }
 ?>
+
+
