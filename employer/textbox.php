@@ -55,53 +55,55 @@ if (!isset($_SESSION['role']) || empty($_SESSION['role'])) {
 
     </div>
 
-    <script>
-    submitBtnTextbox.addEventListener("click", () => {
-        const answer = document.getElementById("answer").value.trim();
-
-        // Ensure the answer is not empty before proceeding
-        if (answer !== "") {
-        const dataToSave = {
-            answer: answer, // Assign the textarea value to the answer property
-        };
-        console.log(dataToSave);
-
-        saveDataToDatabase(dataToSave);
-        }
-    });
-
-    function saveDataToDatabase(data) {
-        const requestData = "data=" + encodeURIComponent(JSON.stringify(data));
-        
-        fetch("add_data.php", {
-            method: "POST",
-            headers: {
-            "Content-Type": "application/x-www-form-urlencoded",
-            },
-            body: requestData,
-        })
-            .then((response) => response.json())
-            .then((data) => {
-            if (data.success) {
-                console.log("Data saved successfully");
-                // Optionally, you can show a success message to the user here.
-            } else {
-                console.error("Error adding data to the database:", data.message);
-                // Optionally, you can show an error message to the user here.
-            }
-            })
-            .catch((error) => {
-            console.error("Error sending data to the server:", error);
-            // Optionally, you can show a general error message to the user here.
-        });
-    }
-
-    </script>
     <!-- Functionality -->
     <script src="js/script.js"></script>
     <!-- Crud -->
     <script src="js/crud.js"></script>
 
+    <script>
+        // Function to handle form submission and send data to the server
+        function submitAnswer() {
+            var answer = $('#answer').val(); // Get the value of the answer textarea
+            var data = { answer: answer }; // Create an object with the data to be sent
+
+            // Send the data to the server using AJAX
+            $.ajax({
+                url: 'add_data.php', // Replace with the URL of your server-side script or API
+                type: 'POST',
+                dataType: 'json',
+                data: data,
+                success: function(response) {
+                    // Handle the response from the server if needed
+                    console.log('Data saved successfully:', response);
+                },
+                error: function(xhr, status, error) {
+                    // Handle any errors that occurred during the AJAX request
+                    console.error('Error:', error);
+                }
+            });
+        }
+
+        let currentQuizTextbox = 0;
+        const quizContainer = document.getElementById("quiz");
+
+        // Attach a click event listener to the submit button
+        $('#submitBtnTextbox').on('click', function() {
+            submitAnswer();
+    
+            currentQuizTextbox++;
+
+            if (currentQuizTextbox < quizDataTextbox.length) {
+                loadTextbox();
+            } else {
+                quizContainer.innerHTML = `
+                    <div class="quiz-header">
+                        <h2 id="textbox">Congratulation you done in evaluation</h2>
+                    </div>
+                    <button onclick="window.location.replace('evaluation.php');">Okay</button>
+                `;
+            }
+        });
+    </script>
     <!-- Boostrap Link JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous">
