@@ -18,7 +18,7 @@ function generatePDF($title, $name, $questions)
     $now = new DateTime();
     // Get the current year
     $currentYear = date("Y");
-    $subtitle = "General Questionaire";
+    $subtitle = "General Questionnaire";
 
     // Format the date in a human-readable format
     $formattedDate = $now->format('F j, Y');
@@ -59,27 +59,60 @@ function generatePDF($title, $name, $questions)
     $pdf->Ln(1); // Add some spacing after the name
 
     // Set font and size for name
-    $pdf->SetFont('Arial', 'B', 12);
-    $pdf->Cell(0, 10, "Date: " . $formattedDate, 0, 1, 'L');
-    $pdf->Ln(10); // Add some spacing after the name
+$pdf->SetFont('Arial', 'B', 12);
+$pdf->Cell(0, 10, "Date: " . $formattedDate, 0, 1, 'L'); // Use 0, 1 to add a line break after the date
+$pdf->Ln(10); // Add some spacing after the date
 
-    // Set font and size for questions and choices
-    $pdf->SetFont('Arial', 'B', 12);
+// Text to display inside the box
+$score = "Score/Grade";
+// Set font and size for the score text
+$pdf->SetFont('Arial', '', 12);
 
-    // Add questions and choices to the PDF
-    foreach ($questions as $index => $question) {
-        $pdf->Cell(0, 8, 'Question ' . ($index + 1) . ': ' . $question['question'], 0, 1);
+// Set width and height for the box
+$boxWidth = 40;
+$boxHeight = 20;
 
-        // Add choices
-        $pdf->SetFont('Arial', '', 10);
-        $pdf->Cell(0, 8, 'A) ' . $question['choice_a'], 0, 1);
-        $pdf->Cell(0, 8, 'B) ' . $question['choice_b'], 0, 1);
-        $pdf->Cell(0, 8, 'C) ' . $question['choice_c'], 0, 1);
-        $pdf->Cell(0, 8, 'D) ' . $question['choice_d'], 0, 1);
+// Set absolute X and Y coordinates for the box
+$boxX = 155;
+$boxY = 40;
 
-        $pdf->SetFont('Arial', 'B', 10); // Reset font size for next question
-        $pdf->Ln(10); // Add some spacing between questions
-    }
+// Set absolute X and Y coordinates for the score text
+$textX = $boxX + ($boxWidth / 2) - ($pdf->GetStringWidth($score) / 2);
+$textY = $boxY + $boxHeight + 5;
+
+// Draw the box at the absolute position
+$pdf->SetXY($boxX, $boxY);
+$pdf->Rect($boxX, $boxY, $boxWidth, $boxHeight);
+
+// Add the score text at the absolute position below the box
+$pdf->SetXY($textX, $textY);
+$pdf->Cell($boxWidth, 10, $score, 0, 0, 'C');
+
+// Move the box and score text to a new position on the page
+$boxX = 120;
+$boxY = 80;
+
+$textX = $boxX + ($boxWidth / 2) - ($pdf->GetStringWidth($score) / 2);
+$pdf->Ln(10); // Add some spacing after the date
+
+// Set font and size for questions and choices
+$pdf->SetFont('Arial', 'B', 12);
+
+// Add questions and choices to the PDF
+foreach ($questions as $index => $question) {
+    $pdf->Cell(0, 8, 'Question ' . ($index + 1) . ': ' . $question['question'], 0, 1);
+
+    // Add choices
+    $pdf->SetFont('Arial', '', 10);
+    $pdf->Cell(0, 8, 'A) ' . $question['choice_a'], 0, 1);
+    $pdf->Cell(0, 8, 'B) ' . $question['choice_b'], 0, 1);
+    $pdf->Cell(0, 8, 'C) ' . $question['choice_c'], 0, 1);
+    $pdf->Cell(0, 8, 'D) ' . $question['choice_d'], 0, 1);
+
+    $pdf->SetFont('Arial', 'B', 10); // Reset font size for next question
+    $pdf->Ln(10); // Add some spacing between questions
+}
+
 
     // Output the PDF
     $pdf->Output();
@@ -110,4 +143,3 @@ $title = "Examination " . $formattedDate; // Set the title here
 $name = "___________________________"; // Set the name here
 generatePDF($title, $name, $questions);
 ?>
-
