@@ -2,6 +2,11 @@
 
 /** <- use this to make bullet list
  * Method
+ * Method
+ * Method
+ * Method
+ * Method
+ * Method
  * Bullet list
  * Another bullet
 // !Example of red Comment
