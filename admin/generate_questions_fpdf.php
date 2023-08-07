@@ -113,6 +113,56 @@ foreach ($questions as $index => $question) {
     $pdf->Ln(10); // Add some spacing between questions
 }
 
+    // Set font and size for the score text
+    $pdf->SetFont('Arial', '', 12);
+
+    // Set width and height for the box
+    $boxWidth = 80;
+    $boxHeight = 45;
+
+    // Set absolute X and Y coordinates for the box
+    $boxX = 115;
+    $boxY = 230;
+
+    // Set absolute X and Y coordinates for the score text
+    $textX = $boxX + ($boxWidth / 2) - ($pdf->GetStringWidth($score) / 2);
+    $textY = $boxY + $boxHeight + 5;
+
+    // Draw the box at the absolute position
+    $pdf->SetXY($boxX, $boxY);
+    $pdf->Rect($boxX, $boxY, $boxWidth, $boxHeight);
+
+    // Move the box and score text to a new position on the page
+    $boxXNew = 120; // New X position for the box
+    $boxYNew = 10;  // New Y position for the box
+
+    $textXNew = $boxXNew + ($boxWidth / 2) - ($pdf->GetStringWidth($score) / 2);
+    $textYNew = $boxYNew + $boxHeight + 5;
+
+    // Add the score text at the new absolute position below the box
+    $pdf->SetXY($textXNew, $textYNew);
+
+    // Add text inside the new box
+    $pdf->SetFont('Arial', '', 10);
+    $boxText = "Signature: _______________________"; // Replace with your desired text
+    $pdf->SetXY($boxXNew, $boxYNew + 229); // Adjust the coordinates for padding
+    $pdf->MultiCell($boxWidth - 10, 8, $boxText, 0, 'L');
+
+    // Add text inside the new box
+    $pdf->SetFont('Arial', '', 10);
+    $boxText = "Signature: _______________________"; // Replace with your desired text
+    $pdf->SetXY($boxXNew, $boxYNew + 239); // Adjust the coordinates for padding
+    $pdf->MultiCell($boxWidth - 10, 8, $boxText, 0, 'L');
+
+    // Add text inside the new box
+    $pdf->SetFont('Arial', '', 10);
+    $boxText = "Signature: _______________________"; // Replace with your desired text
+    $pdf->SetXY($boxXNew, $boxYNew + 249); // Adjust the coordinates for padding
+    $pdf->MultiCell($boxWidth - 10, 8, $boxText, 0, 'L');
+
+    // Adjust the following content (questions and choices)
+    $pdf->Ln(10); // Add some spacing after the box
+
 
     // Output the PDF
     $pdf->Output();
