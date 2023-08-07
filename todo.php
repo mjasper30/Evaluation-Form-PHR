@@ -15,6 +15,14 @@
 // TODO: Your todo list
 // @param myParam The parameter for this method
 
+// TODO: Generate Signature box sa baba ng test form
+// TODO: Adding of category para masort out kung ano lang yung pedeng add
+// TODO: Paano ko palalabasin yung specific na questions lang as per category
+// TODO: Paano ko maipapalabas yung mga sinagutan ni user sa pdf (using highlight text ganyan)
+// TODO: Maadd yung data na sinagutan as per username and question_id
+// TODO: Checkbox or drop down ng category para macheck kung ano lang gusto kong iprint
+// TODO: (OPTIONAL TIMER)
+// TODO: OPENING AND CLOSING OF QUESTION - para di nila masugatan ng paulit ulit or kapag nakapagsagot na siya ng test di na nya pedeng ulitin sagutan yung tanong
 // TODO: Add the textbox next to the multiple choice
 // TODO: Create category of the question
 // TODO: Generate text message
@@ -35,4 +43,13 @@
 // * DONE: Add more questions
 // * DONE: Add textbox questions after the multiple choice questions
 
+ */
+
+ /*
+ Generate Encoding Report
+* Fix the bug of last week encoding report. Pansin naten na nagrereference yung end of last week is kahapon. Dapat fix siya na last week lang yung makukuha nya
+
+Evaluation Form
+
+ 
  */
