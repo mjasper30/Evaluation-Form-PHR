@@ -61,6 +61,7 @@ if (!isset($_SESSION['role']) || empty($_SESSION['role'])) {
     <script src="js/crud.js"></script>
 
     <script>
+        const answerElsTextbox = document.getElementById("answer");
         // Function to handle form submission and send data to the server
         function submitAnswer() {
             var answer = $('#answer').val(); // Get the value of the answer textarea
@@ -75,6 +76,7 @@ if (!isset($_SESSION['role']) || empty($_SESSION['role'])) {
                 success: function(response) {
                     // Handle the response from the server if needed
                     console.log('Data saved successfully:', response);
+                    answerElsTextbox.value = "";
                 },
                 error: function(xhr, status, error) {
                     // Handle any errors that occurred during the AJAX request

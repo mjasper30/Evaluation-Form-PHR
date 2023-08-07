@@ -14,6 +14,7 @@ const submitBtn = document.getElementById("submit");
 const textbox = document.getElementById("textbox");
 const textboxAnswer = document.getElementById("textboxAnswer");
 const submitBtnTextbox = document.getElementById("submitBtnTextbox");
+const answerElsTextbox = document.getElementById("answer");
 
 let currentQuiz = 0;
 let score = 0;
@@ -48,7 +49,7 @@ function loadQuiz() {
 }
 
 function loadTextbox() {
-  // deselectAnswers();
+  resetTextbox();
 
   const quizUrl = "list_of_textbox.php";
 
@@ -71,6 +72,10 @@ function loadTextbox() {
 
 function deselectAnswers() {
   answerEls.forEach((answerEl) => (answerEl.checked = false));
+}
+
+function resetTextbox() {
+  answerElsTextbox.value = "";
 }
 
 function getSelected() {
