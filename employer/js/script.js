@@ -1,5 +1,4 @@
 let quizData; // Declare the quizData variable
-let quizDataTextbox; // Declare the quizData variable
 
 const quiz = document.getElementById("quiz");
 const answerEls = document.querySelectorAll(".answer");
@@ -10,17 +9,10 @@ const c_text = document.getElementById("c_text");
 const d_text = document.getElementById("d_text");
 const submitBtn = document.getElementById("submit");
 
-//Textbox
-const textbox = document.getElementById("textbox");
-const textboxAnswer = document.getElementById("textboxAnswer");
-const submitBtnTextbox = document.getElementById("submitBtnTextbox");
-const answerElsTextbox = document.getElementById("answer");
-
 let currentQuiz = 0;
 let score = 0;
 
 loadQuiz();
-loadTextbox();
 
 function loadQuiz() {
   deselectAnswers();
@@ -48,34 +40,8 @@ function loadQuiz() {
     });
 }
 
-function loadTextbox() {
-  resetTextbox();
-
-  const quizUrl = "list_of_textbox.php";
-
-  fetch(quizUrl)
-    .then((response) => response.json())
-    .then((data) => {
-      // Process the fetched data
-      console.log(data); // or do something else with the data
-      quizDataTextbox = data;
-
-      const currentQuizData = data[currentQuiz];
-
-      textbox.innerText = currentQuizData.textbox;
-    })
-    .catch((error) => {
-      // Handle any errors
-      console.error("Error fetching quiz data:", error);
-    });
-}
-
 function deselectAnswers() {
   answerEls.forEach((answerEl) => (answerEl.checked = false));
-}
-
-function resetTextbox() {
-  answerElsTextbox.value = "";
 }
 
 function getSelected() {

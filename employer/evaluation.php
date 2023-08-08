@@ -5,9 +5,9 @@ session_start();
 
 // Check if the session variable is not set or does not contain the necessary data
 if (!isset($_SESSION['role']) || empty($_SESSION['role'])) {
-  // Redirect to the login page or display an error message
-  header("Location: index.php");
-  exit();
+    // Redirect to the login page or display an error message
+    header("Location: index.php");
+    exit();
 }
 ?>
 
