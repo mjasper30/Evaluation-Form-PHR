@@ -71,6 +71,9 @@ if (!isset($_SESSION['role']) || empty($_SESSION['role'])) {
     let currentQuiz = 0;
     let score = 0;
 
+    let currentQuizTextbox = 0;
+    const quizContainer = document.getElementById("quiz");
+
     loadTextbox();
 
     function loadTextbox() {
@@ -85,7 +88,7 @@ if (!isset($_SESSION['role']) || empty($_SESSION['role'])) {
                 console.log(data); // or do something else with the data
                 quizDataTextbox = data;
 
-                const currentQuizData = data[currentQuiz];
+                const currentQuizData = data[currentQuizTextbox];
 
                 textbox.innerText = currentQuizData.textbox;
             })
@@ -98,7 +101,6 @@ if (!isset($_SESSION['role']) || empty($_SESSION['role'])) {
     function resetTextbox() {
         answerElsTextbox.value = "";
     }
-
 
     // Function to handle form submission and send data to the server
     function submitAnswer() {
@@ -123,9 +125,6 @@ if (!isset($_SESSION['role']) || empty($_SESSION['role'])) {
             }
         });
     }
-
-    let currentQuizTextbox = 0;
-    const quizContainer = document.getElementById("quiz");
 
     // Attach a click event listener to the submit button
     $('#submitBtnTextbox').on('click', function() {
