@@ -3,6 +3,7 @@ require('includes/dbconn.php');
 
 if (isset($_POST['update_question'])) {
     $questionId = mysqli_real_escape_string($conn, $_POST['question_id']);
+    $yourCategory = mysqli_real_escape_string($conn, $_POST['editYourCategory']);
     $yourQuestion = mysqli_real_escape_string($conn, $_POST['editYourQuestion']);
     $choiceOne = mysqli_real_escape_string($conn, $_POST['choiceOneEdit']);
     $choiceTwo = mysqli_real_escape_string($conn, $_POST['choiceTwoEdit']);
@@ -19,7 +20,7 @@ if (isset($_POST['update_question'])) {
     //     return;
     // }
 
-    $query = "UPDATE `questions` SET `question`='$yourQuestion', `choice_a`='$choiceOne', `choice_b`='$choiceTwo', `choice_c`='$choiceThree', `choice_d`='$choiceFour', `correct_answer`='$correctAnswer' WHERE `question_id`=$questionId";
+    $query = "UPDATE `questions` SET `category`='$yourCategory', `question`='$yourQuestion', `choice_a`='$choiceOne', `choice_b`='$choiceTwo', `choice_c`='$choiceThree', `choice_d`='$choiceFour', `correct_answer`='$correctAnswer' WHERE `question_id`=$questionId";
     $query_run = mysqli_query($conn, $query);
 
     if ($query_run) {

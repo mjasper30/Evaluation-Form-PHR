@@ -8,6 +8,7 @@ function loadQuestions() {
     },
     columns: [
       { width: "20px", data: "question_id" }, // Set width of 20 pixels for the first column
+      { width: "200px", data: "category" }, // Set width of 20 pixels for the first column
       { width: "200px", data: "question" }, // Set width of 200 pixels for the second column
       { width: "150px", data: "choice_a" }, // Set width of 150 pixels for the third column
       { width: "150px", data: "choice_b" }, // Set width of 150 pixels for the fourth column
@@ -35,14 +36,16 @@ function loadQuestions() {
       },
     ],
     columnDefs: [
-      { targets: [2, 3, 4, 5, 6, 7], orderable: false }, // Hide sorting for columns 1 and 3
+      { targets: [3, 4, 5, 6, 7, 8], orderable: false }, // Hide sorting for columns 1 and 3
     ],
   });
 }
 
+var question_id;
+
 // Get id and value from the table
 $(document).on("click", ".editQuestionBtn", function () {
-  var question_id = $(this).data("question-id");
+  question_id = $(this).data("question-id");
   // var question_id = $(this).val();
 
   $.ajax({
@@ -54,6 +57,7 @@ $(document).on("click", ".editQuestionBtn", function () {
         alert(res.message);
       } else if (res.status == 200) {
         $("#category_id").val(res.data.question_id);
+        $("#editYourCategory").val(res.data.category);
         $("#editYourQuestion").val(res.data.question);
         $("#choiceOneEdit").val(res.data.choice_a);
         $("#choiceTwoEdit").val(res.data.choice_b);
@@ -105,7 +109,6 @@ $("#confirmDeleteBtn").on("click", function () {
 });
 
 $(document).on("submit", "#editQuestionForm", function (e) {
-  var question_id = $(".editQuestionBtn").data("question-id");
   e.preventDefault();
 
   var formData = new FormData(this);
@@ -135,6 +138,7 @@ $(document).on("submit", "#editQuestionForm", function (e) {
     },
   });
 });
+
 
 function logOut() {
   $.ajax({

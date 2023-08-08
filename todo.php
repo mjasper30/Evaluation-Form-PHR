@@ -15,7 +15,6 @@
 // TODO: Your todo list
 // @param myParam The parameter for this method
 
-// TODO: Generate Signature box sa baba ng test form
 // TODO: Adding of category para masort out kung ano lang yung pedeng add
 // TODO: Paano ko palalabasin yung specific na questions lang as per category
 // TODO: Paano ko maipapalabas yung mga sinagutan ni user sa pdf (using highlight text ganyan)
