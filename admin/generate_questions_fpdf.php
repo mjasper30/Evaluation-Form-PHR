@@ -96,11 +96,30 @@ function generatePDF($title, $name, $questions)
     $pdf->Ln(10); // Add some spacing after the date
 
     // Set font and size for questions and choices
-    $pdf->SetFont('Arial', 'B', 12);
+    $pdf->SetFont('Arial', 'B', 10);
+
+    $margin = 15; // Set the margin size
 
     // Add questions and choices to the PDF
     foreach ($questions as $index => $question) {
-        $pdf->Cell(0, 8, 'Question ' . ($index + 1) . ': ' . $question['question'], 0, 1);
+        $cellWidth = 180; // Set the width of the cell
+        $cellHeight = 8;  // Set the height of the cell
+        $text = 'Question ' . ($index + 1) . ': ' . $question['question'];
+
+        // Calculate the number of lines needed for the text
+        $numLines = ceil($pdf->GetStringWidth($text) / $cellWidth);
+
+        // Calculate the total height required for the text
+        $textHeight = $numLines * $cellHeight;
+
+        // Check if the text height exceeds the remaining space on the page, add a new page if needed
+        if ($pdf->GetY() + $textHeight > $pdf->GetPageHeight() - $margin) {
+            $pdf->AddPage();
+        }
+
+        // Add the text to the cell
+        $pdf->MultiCell($cellWidth, $cellHeight, $text, 0, 'L');
+
 
         // Add choices
         $pdf->SetFont('Arial', '', 10);
