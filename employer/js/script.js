@@ -12,6 +12,8 @@ const submitBtn = document.getElementById("submit");
 let currentQuiz = 0;
 let score = 0;
 
+let currentQuizQuestionId = 0;
+
 loadQuiz();
 
 function loadQuiz() {
@@ -67,6 +69,8 @@ submitBtn.addEventListener("click", () => {
     }
 
     currentQuiz++;
+    currentQuizQuestionId++;
+    submitAnswer();
 
     if (currentQuiz < quizData.length) {
       loadQuiz();
@@ -79,6 +83,31 @@ submitBtn.addEventListener("click", () => {
     }
   }
 });
+
+// Function to handle form submission and send data to the server
+function submitAnswer() {
+  const answer = getSelected();
+  var data = {
+    answer: answer,
+    currentQuizQuestionId: currentQuizQuestionId,
+  }; // Create an object with the data to be sent
+
+  // Send the data to the server using AJAX
+  $.ajax({
+    url: "add_user_answer.php", // Replace with the URL of your server-side script or API
+    type: "POST",
+    dataType: "json",
+    data: data,
+    success: function (response) {
+      // Handle the response from the server if needed
+      console.log("Data saved successfully:", response);
+    },
+    error: function (xhr, status, error) {
+      // Handle any errors that occurred during the AJAX request
+      console.error("Error:", error);
+    },
+  });
+}
 
 function addScoreToDatabase() {
   const scoreData = {

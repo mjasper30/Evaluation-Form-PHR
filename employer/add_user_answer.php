@@ -10,7 +10,7 @@ $dbname = "evaluation_form";
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!empty($_POST['answer'])) {
         $answer = $_POST['answer'];
-        $currentQuizTextboxId = $_POST['currentQuizTextboxId'];
+        $currentQuizQuestionId = $_POST['currentQuizQuestionId'];
 
         // Create a connection to the database
         $conn = mysqli_connect($servername, $username, $password, $dbname);
@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $username = $_SESSION['username'];
 
         // Prepare the insert query
-        $sql = "INSERT INTO textbox_responses (textbox_id, username, answer) VALUES ('$currentQuizTextboxId', '$username', '$escapedAnswer')";
+        $sql = "INSERT INTO questions_responses (question_id, username, answer) VALUES ('$currentQuizQuestionId', '$username', '$escapedAnswer')";
 
         if (mysqli_query($conn, $sql)) {
             // Successfully inserted the data

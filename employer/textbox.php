@@ -72,6 +72,7 @@ if (!isset($_SESSION['role']) || empty($_SESSION['role'])) {
     let score = 0;
 
     let currentQuizTextbox = 0;
+    let currentQuizTextboxId = 1;
     const quizContainer = document.getElementById("quiz");
 
     loadTextbox();
@@ -106,7 +107,8 @@ if (!isset($_SESSION['role']) || empty($_SESSION['role'])) {
     function submitAnswer() {
         var answer = $('#answer').val(); // Get the value of the answer textarea
         var data = {
-            answer: answer
+            answer: answer,
+            currentQuizTextboxId: currentQuizTextboxId
         }; // Create an object with the data to be sent
 
         // Send the data to the server using AJAX
@@ -131,6 +133,7 @@ if (!isset($_SESSION['role']) || empty($_SESSION['role'])) {
         submitAnswer();
 
         currentQuizTextbox++;
+        currentQuizTextboxId++;
 
         if (currentQuizTextbox < quizDataTextbox.length) {
             loadTextbox();
